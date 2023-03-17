@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class PostController extends Controller
 {
@@ -12,7 +13,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::with('comments')->latest()->paginate(10);
+
+        return Inertia::render('Posts/Index', [
+            'posts' => $posts,
+        ]);
     }
 
     /**
@@ -36,7 +41,12 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        $post->load(['comments', 'user', 'comments.user']);
+
+        return Inertia::render('Posts/Show', [
+            'post' => $post,
+            'comments' => $post->comments
+        ]);
     }
 
     /**
