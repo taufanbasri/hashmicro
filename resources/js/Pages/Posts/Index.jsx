@@ -36,7 +36,7 @@ export default function Index({ posts, auth }) {
                 <div className="mt-4">
                     {posts.links.map((link) => (
                         <Link
-                            key={link.url}
+                            key={link.label}
                             href={link.url}
                             className={`bg-white border border-gray-300 px-3 py-1 mx-1 ${link.active ? 'text-blue-500 font-bold' : ''
                                 } hover:text-blue-500 transition-colors duration-300`}

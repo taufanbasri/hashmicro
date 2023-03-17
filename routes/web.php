@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CheckCharacterController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -36,6 +37,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('/posts', PostController::class);
+
+    Route::get('/check-characters', function () {
+        return Inertia::render('CheckCharacters');
+    })->name('check_characters');
+
+    Route::post('/calculate', [CheckCharacterController::class, 'calculate'])->name('calculate');
 });
 
 require __DIR__ . '/auth.php';

@@ -22,9 +22,17 @@ export default function Show({ post, comments, auth }) {
         >
             <Head title="Details Post" />
 
-
             <div className="container py-8 mx-auto">
                 <div className="max-w-2xl mx-auto">
+                    <div className="mb-4">
+                        <Link
+                            href={route('posts.index')}
+                            className="text-blue-500 transition-colors duration-300 hover:text-blue-600"
+                        >
+                            Back to All Posts
+                        </Link>
+                    </div>
+
                     <h1 className="mb-4 text-3xl font-bold">{post.title}</h1>
                     <p className="mb-4 text-gray-600">{post.content}</p>
                     <p className="mb-8 text-gray-400">Posted by {post.user.name} on {post.created_at}</p>
