@@ -11,7 +11,7 @@ export default function Index({ posts, auth }) {
         >
             <Head title="All Posts" />
 
-            <div className="max-w-3xl mx-auto">
+            <div className="max-w-3xl mx-auto mt-4">
                 {posts.data.map((post) => (
                     <div key={post.id} className="p-4 mb-4 bg-white rounded-lg">
                         <Link
