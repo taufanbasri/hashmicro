@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('/posts', PostController::class);
+    Route::post('/posts/{post}/comments', [PostController::class, 'comments'])->name('posts.comments');
 
     Route::get('/check-characters', function () {
         return Inertia::render('CheckCharacters');

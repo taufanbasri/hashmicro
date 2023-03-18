@@ -12,7 +12,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $guarde = [];
+    protected $guarded = [];
 
     public function comments(): HasMany
     {
@@ -23,7 +23,6 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
-
 
     public function getCreatedAtAttribute($value)
     {

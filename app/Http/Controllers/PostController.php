@@ -25,7 +25,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Posts/Create');
     }
 
     /**
@@ -33,7 +33,16 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+        ]);
+
+        $data['user_id'] = auth()->user()->id;
+
+        Post::create($data);
+
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -44,7 +53,7 @@ class PostController extends Controller
         $post->load(['comments', 'user', 'comments.user']);
 
         return Inertia::render('Posts/Show', [
-            'post' => $post,
+            'postData' => $post,
             'comments' => $post->comments
         ]);
     }
@@ -71,5 +80,19 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+    }
+
+    public function comments(Request $request, Post $post)
+    {
+        $data = $request->validate([
+            'content' => 'required',
+        ]);
+
+        $post->comments()->create([
+            'content' => $data['content'],
+            'user_id' => auth()->user()->id,
+        ]);
+
+        return redirect()->back();
     }
 }

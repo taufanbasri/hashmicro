@@ -11,7 +11,7 @@ class Comment extends Model
 {
     use HasFactory;
 
-    protected $guarde = [];
+    protected $guarded = [];
 
     public function user(): BelongsTo
     {

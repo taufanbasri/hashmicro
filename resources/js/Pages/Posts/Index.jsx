@@ -12,6 +12,15 @@ export default function Index({ posts, auth }) {
             <Head title="All Posts" />
 
             <div className="max-w-3xl mx-auto mt-4">
+                <div className="flex justify-end">
+                    <Link
+                        href={route('posts.create')}
+                        className="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-700"
+                    >
+                        New Post
+                    </Link>
+                </div>
+
                 {posts.data.map((post) => (
                     <div key={post.id} className="p-4 mb-4 bg-white rounded-lg">
                         <Link
